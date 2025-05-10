@@ -2,14 +2,14 @@
 #include<iostream>
 #include<string>
 using namespace std;
-//ÌâÄ¿Àà£¬°üº¬ÌâÄ¿Ìâ¸É£¬±¸Ñ¡Ïî£¬´ğ°¸
+//é¢˜ç›®ç±»ï¼ŒåŒ…å«é¢˜ç›®é¢˜å¹²ï¼Œå¤‡é€‰é¡¹ï¼Œç­”æ¡ˆ
 class qstore {
 public:
 	qstore(string qb, string op, string aw);
 	void getq();
 
-//ÆäÊµÖ»¸øqmanage·ÃÎÊ
-	string qbody;//Ìâ¸É
-	string opt;//Ñ¡Ïî
-	string ans;//´ğ°¸
+//å…¶å®åªç»™qmanageè®¿é—®
+	string qbody;//é¢˜å¹²
+	string opt;//é€‰é¡¹
+	string ans;//ç­”æ¡ˆ
 };
