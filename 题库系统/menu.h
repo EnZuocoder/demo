@@ -3,7 +3,7 @@
 #include <iomanip>
 #include<fstream>
 using namespace std;
-//Ö÷²Ëµ¥Àà
+//Ã–Ã·Â²Ã‹ÂµÂ¥Ã€Ã 
 class menu {
 public:
 	menu();
