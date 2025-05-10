@@ -3,8 +3,8 @@ qmanage::qmanage() {
 	ifstream ifs;
 	ifs.open("qstore.txt", ios::in);
 	if (!ifs.is_open())//
-	{//´ò¿ªÊ§°Ü£¬ËµÃ÷ÎÄ±¾ÎÄ¼ş±»É¾³ı
-		cout << "ÎÄ¼ş²»´æÔÚ"<<endl;
+	{//æ‰“å¼€å¤±è´¥ï¼Œè¯´æ˜æ–‡æœ¬æ–‡ä»¶è¢«åˆ é™¤
+		cout << "æ–‡ä»¶ä¸å­˜åœ¨"<<endl;
 		qarry = NULL;
 		qnum = 0;
 		isempty = true;
@@ -12,15 +12,15 @@ qmanage::qmanage() {
 	}
 	char ch='0';
 	ifs>>ch;
-	if (ifs.eof())//ÅĞ¶ÏÌâ¿âÊÇ·ñÎª¿Õ
+	if (ifs.eof())//åˆ¤æ–­é¢˜åº“æ˜¯å¦ä¸ºç©º
 	{
-		cout << "ÔİÎŞÌâÄ¿"<<endl;
+		cout << "æš‚æ— é¢˜ç›®"<<endl;
 		qarry = NULL;
 		qnum = 0;
 		isempty = true;
 		return;
 	}
-	//ÎÄ±¾·Ç¿Õ£¬¾Í°ÑÎÄ±¾ÖĞµÄÊı¾İ¶ÁÈëµ½¶ÑÇø
+	//æ–‡æœ¬éç©ºï¼Œå°±æŠŠæ–‡æœ¬ä¸­çš„æ•°æ®è¯»å…¥åˆ°å †åŒº
 	qnum = this->getqnum();
 	qarry = new qstore * [this->qnum];
 	this->initq();
@@ -34,22 +34,22 @@ void qmanage::initq()
 	string qbody, opt, ans;
 	while (1)
 	{
-		getline(ifs, qbody);//³õÊ¼»¯Ìâ¸É
-		if (qbody.empty())//ÅĞ¶Ï¶Áµ½µÄ¶«Î÷ÊÇ·ñÎª¿Õ
+		getline(ifs, qbody);//åˆå§‹åŒ–é¢˜å¹²
+		if (qbody.empty())//åˆ¤æ–­è¯»åˆ°çš„ä¸œè¥¿æ˜¯å¦ä¸ºç©º
 		{
 			if (!getline(ifs, qbody))
 				break;
 
 		}
-		getline(ifs, opt);//³õÊ¼»¯±¸Ñ¡ÏîºÍ´ğ°¸
+		getline(ifs, opt);//åˆå§‹åŒ–å¤‡é€‰é¡¹å’Œç­”æ¡ˆ
 		getline(ifs, ans);
 		qstore* q = NULL;
 		q = new qstore(qbody, opt, ans);
-		this->qarry[num] = q;//¶ÁÈë¶ş¼¶Ö¸ÕëÊı×é
+		this->qarry[num] = q;//è¯»å…¥äºŒçº§æŒ‡é’ˆæ•°ç»„
 		num++;
 
 	}
-	this->qnum = num;//¸üĞÂÊıÁ¿
+	this->qnum = num;//æ›´æ–°æ•°é‡
 	ifs.close();
 }
 int qmanage::getqnum()
@@ -66,24 +66,24 @@ int qmanage::getqnum()
 
 }
 qmanage::~qmanage()
-{//Îö¹¹¶ÑÇøÊı¾İ
+{//ææ„å †åŒºæ•°æ®
 	if (qarry != NULL)
 	{
 		delete[] qarry;
 		qarry = NULL;
 	}
 }
-void qmanage:: addq()//Ìí¼ÓÌâÄ¿µ½¶ÑÇø
+void qmanage:: addq()//æ·»åŠ é¢˜ç›®åˆ°å †åŒº
 {
-	cout << "ÒªÌí¼Ó¼¸¸öÌâÄ¿£¿ ";
+	cout << "è¦æ·»åŠ å‡ ä¸ªé¢˜ç›®ï¼Ÿ ";
 	int addnum=0;
 	cin >> addnum;
 	if (addnum != 0)
 	{
-		int newsize = addnum + qnum;//ĞÂµÄÌâÄ¿ÊıÁ¿
-		qstore** newspace = new qstore * [newsize];//¿ª±ÙĞÂ¿Õ¼ä
-//½«Ô­ÓĞ¿Õ¼äµÄÌâÄ¿·ÅÈëĞÂ¿Õ¼ä
-		if (qarry != NULL)//ÅĞ¶ÏÔ­¿Õ¼äÊÇ·ñÎª¿Õ
+		int newsize = addnum + qnum;//æ–°çš„é¢˜ç›®æ•°é‡
+		qstore** newspace = new qstore * [newsize];//å¼€è¾Ÿæ–°ç©ºé—´
+//å°†åŸæœ‰ç©ºé—´çš„é¢˜ç›®æ”¾å…¥æ–°ç©ºé—´
+		if (qarry != NULL)//åˆ¤æ–­åŸç©ºé—´æ˜¯å¦ä¸ºç©º
 		{
 			for (int i = 0; i < qnum; i++)
 			{
@@ -92,33 +92,33 @@ void qmanage:: addq()//Ìí¼ÓÌâÄ¿µ½¶ÑÇø
 	    }
 		for (int i = 0; i < addnum; i++)
 		{
-			//ÌâÄ¿
-			qstore* q = NULL;//Ö¸ÏòÌâÄ¿ÀàµÄÖ¸Õë
-			string body, opt, ans;//Ìâ¸É£¬Ñ¡Ïî£¬´ğ°¸
-			cout << "µÚ" << i+1 << "µÀÌâµÄÌâ¸É£º";
+			//é¢˜ç›®
+			qstore* q = NULL;//æŒ‡å‘é¢˜ç›®ç±»çš„æŒ‡é’ˆ
+			string body, opt, ans;//é¢˜å¹²ï¼Œé€‰é¡¹ï¼Œç­”æ¡ˆ
+			cout << "ç¬¬" << i+1 << "é“é¢˜çš„é¢˜å¹²ï¼š";
 			if (i == 0)
-			char ch = getchar();//°Ñ»º³åÇøµÄ»Ø³µÍÌµô
-			getline(cin, body);//²»ÓÃcin±ÜÃâ¿Õ¸ñÎÊÌâ
-				cout << "µÚ" << i+1 << "µÀÌâµÄ±¸Ñ¡Ïî£º";
+			char ch = getchar();//æŠŠç¼“å†²åŒºçš„å›è½¦åæ‰
+			getline(cin, body);//ä¸ç”¨ciné¿å…ç©ºæ ¼é—®é¢˜
+				cout << "ç¬¬" << i+1 << "é“é¢˜çš„å¤‡é€‰é¡¹ï¼š";
 				getline(cin, opt);
-				cout << "µÚ" << i+1 << "µÀÌâµÄ´ğ°¸£º";
+				cout << "ç¬¬" << i+1 << "é“é¢˜çš„ç­”æ¡ˆï¼š";
 				getline(cin, ans);
 				q = new qstore(body, opt, ans);
-				newspace[qnum+i] = q;//½«ÊäÈëºÃµÄÌâÄ¿·ÅÈëÖ¸ÕëÊı×é
+				newspace[qnum+i] = q;//å°†è¾“å…¥å¥½çš„é¢˜ç›®æ”¾å…¥æŒ‡é’ˆæ•°ç»„
 		}
-		////ÊÍ·ÅÔ­¿Õ¼ä²¢¸üĞÂÎªĞÂ¿Õ¼ä¸üĞÂÌâÄ¿ÊıÁ¿
+		////é‡Šæ”¾åŸç©ºé—´å¹¶æ›´æ–°ä¸ºæ–°ç©ºé—´æ›´æ–°é¢˜ç›®æ•°é‡
 		delete[] qarry;
 		qarry = newspace;
 		qnum =newsize;
-		cout << "Ìí¼Ó³É¹¦!";
-		this->saveq();//±£´æµ½ÎÄ±¾
+		cout << "æ·»åŠ æˆåŠŸ!";
+		this->saveq();//ä¿å­˜åˆ°æ–‡æœ¬
 		isempty = false;
 	}
 	else {
-		cout << "ÊäÈë´íÎó";
+		cout << "è¾“å…¥é”™è¯¯";
 	}
 }
-void qmanage::saveq()//±£´æÌâÄ¿µ½ÎÄ±¾
+void qmanage::saveq()//ä¿å­˜é¢˜ç›®åˆ°æ–‡æœ¬
 {
 	fstream fst;
 	fst.open("qstore.txt", ios::out);
@@ -134,27 +134,27 @@ void qmanage::saveq()//±£´æÌâÄ¿µ½ÎÄ±¾
 void qmanage::showqmenu() 
 {
 	system("cls");
-	cout << setw(50) << "1.Ìí¼ÓÌâÄ¿" << endl
-		<< setw(50) << "2.ËÙÀÀÌâ¿â" << endl
-		<< setw(50) << "3.±à¼­ÌâÄ¿" << endl
-		<< setw(50) << "4.Çå¿ÕÌâ¿â" << endl
-	<< setw(52) << "5.·µ»ØÖ÷²Ëµ¥" << endl;
-	cout << "ÇëÊäÈëÄãµÄÑ¡Ôñ£º";
+	cout << setw(50) << "1.æ·»åŠ é¢˜ç›®" << endl
+		<< setw(50) << "2.é€Ÿè§ˆé¢˜åº“" << endl
+		<< setw(50) << "3.ç¼–è¾‘é¢˜ç›®" << endl
+		<< setw(50) << "4.æ¸…ç©ºé¢˜åº“" << endl
+	<< setw(52) << "5.è¿”å›ä¸»èœå•" << endl;
+	cout << "è¯·è¾“å…¥ä½ çš„é€‰æ‹©ï¼š";
 }
 
-void qmanage::seeq()//²é¿´Õû¸öÌâ¿â
+void qmanage::seeq()//æŸ¥çœ‹æ•´ä¸ªé¢˜åº“
 {
 	if (isempty)
 	{
-		cout << "µ±Ç°Ìâ¿âÎª¿Õ,ÇëÌí¼ÓÌâÄ¿" << endl;
+		cout << "å½“å‰é¢˜åº“ä¸ºç©º,è¯·æ·»åŠ é¢˜ç›®" << endl;
 	}
 	else {
 		for (int i = 0; i < qnum; i++)
 		{
-			cout << "ÌâÄ¿" << i + 1 <<":"<<endl;
+			cout << "é¢˜ç›®" << i + 1 <<":"<<endl;
 			cout << qarry[i]->qbody << endl;
 			cout << qarry[i]->opt << endl;
-			cout << "±¾Ìâ´ğ°¸£º" << qarry[i]->ans;
+			cout << "æœ¬é¢˜ç­”æ¡ˆï¼š" << qarry[i]->ans;
 			cout << endl<<endl;
 		}
 	}
@@ -164,8 +164,8 @@ void qmanage::cleanq()
 	ofstream clean;
 	clean.open("qstore.txt",ios::trunc);
 	clean.close();
-	cout << "Çå¿Õ³É¹¦" << endl;
-//¶ÑÇøÇå¿Õ
+	cout << "æ¸…ç©ºæˆåŠŸ" << endl;
+//å †åŒºæ¸…ç©º
 	qarry = NULL;
 	qnum = 0;
 	isempty = true;
@@ -175,9 +175,9 @@ void::qmanage::editq() {
 	
 	while (1)
 	{
-		bool error = 0;//ÅĞ¶ÏĞŞ¸ÄÊÇ·ñºÏ·¨µÄboolÁ¿
-		cout << "Òª±à¼­ÄÄµÀÌâÄ¿£¨ÊäÈë0·µ»ØÉÏ¼¶²Ëµ¥£©£¿ " << endl;
-		cout << "ÌâÄ¿ĞòºÅ£º";
+		bool error = 0;//åˆ¤æ–­ä¿®æ”¹æ˜¯å¦åˆæ³•çš„boolé‡
+		cout << "è¦ç¼–è¾‘å“ªé“é¢˜ç›®ï¼ˆè¾“å…¥0è¿”å›ä¸Šçº§èœå•ï¼‰ï¼Ÿ " << endl;
+		cout << "é¢˜ç›®åºå·ï¼š";
 		int qn = -1;
 		cin >> qn;
 		if (qn > 0 && qn <=qnum)
@@ -187,14 +187,14 @@ void::qmanage::editq() {
 			char ch;
 
 
-			cout << "Òª±à¼­" << "µÚ" << qn << "ÌâµÄ£º" << endl;
-			cout << "1.Ìâ¸É" << endl << "2.±¸Ñ¡Ïî" << endl <<
-				"3.´ğ°¸" << endl << "ÇëÊäÈëÄãµÄÑ¡Ôñ";
+			cout << "è¦ç¼–è¾‘" << "ç¬¬" << qn << "é¢˜çš„ï¼š" << endl;
+			cout << "1.é¢˜å¹²" << endl << "2.å¤‡é€‰é¡¹" << endl <<
+				"3.ç­”æ¡ˆ" << endl << "è¯·è¾“å…¥ä½ çš„é€‰æ‹©";
 			cin >> choice;
 			switch (choice)
 			{
 			case 1:
-				cout << "ÇëÊäÈëĞÂµÄÌâ¸É";
+				cout << "è¯·è¾“å…¥æ–°çš„é¢˜å¹²";
 				ch = getchar();
 				getline(cin, qbody);
 
@@ -202,13 +202,13 @@ void::qmanage::editq() {
 				break;
 
 			case 2:
-				cout << "ÇëÊäÈëĞÂµÄÑ¡Ïî";
+				cout << "è¯·è¾“å…¥æ–°çš„é€‰é¡¹";
 				ch = getchar();
 				getline(cin, opt);
 				qarry[qn - 1]->opt = opt;
 				break;
 			case 3:
-				cout << "ÇëÊäÈëĞÂµÄ´ğ°¸";
+				cout << "è¯·è¾“å…¥æ–°çš„ç­”æ¡ˆ";
 				ch = getchar();
 				getline(cin, ans);
 				qarry[qn - 1]->ans = ans;
@@ -219,10 +219,10 @@ void::qmanage::editq() {
 			}
 			if (error)
 			{
-				cout << "²»ºÏ·¨" << endl;
+				cout << "ä¸åˆæ³•" << endl;
 				continue;
 			}
-			cout << "ĞŞ¸Ä³É¹¦" << endl;
+			cout << "ä¿®æ”¹æˆåŠŸ" << endl;
 			saveq();
 
 		}
@@ -232,7 +232,7 @@ void::qmanage::editq() {
 			{
 				return;
 			}
-			cout << "ÎŞ·¨±à¼­¸ÃÌâ,ÇëÈ·ÈÏ¸ÃÌâÊÇ·ñ´æÔÚ" << endl;
+			cout << "æ— æ³•ç¼–è¾‘è¯¥é¢˜,è¯·ç¡®è®¤è¯¥é¢˜æ˜¯å¦å­˜åœ¨" << endl;
 			system("pause");
 			editq();
 		}
@@ -241,50 +241,50 @@ void::qmanage::editq() {
 void qmanage::answerfunc()
 {
 	system("cls");
-	cout << setw(50) << "´ğÌâÏµÍ³" << endl;
+	cout << setw(50) << "ç­”é¢˜ç³»ç»Ÿ" << endl;
 	int num = 0;
-	cout << "ÄãÒª´ğ¼¸µÀÌâ?(ÊäÈë0±íÊ¾·µ»ØÉÏ¼¶²Ëµ¥)" << endl;
+	cout << "ä½ è¦ç­”å‡ é“é¢˜?(è¾“å…¥0è¡¨ç¤ºè¿”å›ä¸Šçº§èœå•)" << endl;
 	cin >> num;
 	if (num == 0)
 		return;
 	else if(num>qnum)
 	{
-		cout << "Ìâ¿âÊıÁ¿²»×ã" << num << "Ìâ";
+		cout << "é¢˜åº“æ•°é‡ä¸è¶³" << num << "é¢˜";
 		system("pause");
 		answerfunc();
 	}
 	else
 	{
-	string* answer = new string[num];//ÓÃÀ´¼ÇÂ¼ÓÃ»§´ğ°¸µÄ×Ö·ûÊı×é
-	int* n = new int[num];//ÓÃÀ´¼ÇÂ¼Ëæ»úÌâÄ¿ÔÚÌâ¿âÖĞµÄ±àºÅ
+	string* answer = new string[num];//ç”¨æ¥è®°å½•ç”¨æˆ·ç­”æ¡ˆçš„å­—ç¬¦æ•°ç»„
+	int* n = new int[num];//ç”¨æ¥è®°å½•éšæœºé¢˜ç›®åœ¨é¢˜åº“ä¸­çš„ç¼–å·
 	for (int i = 0; i < num; i++)
 	{
-		n[i] = randnum(i,num);//Éú³ÉÒ»´®Ëæ»úÊı×Ö£¨²»ÖØ¸´£©·ÅÈëÊı×é
+		n[i] = randnum(i,num);//ç”Ÿæˆä¸€ä¸²éšæœºæ•°å­—ï¼ˆä¸é‡å¤ï¼‰æ”¾å…¥æ•°ç»„
 	}
-//ÏÔÊ¾ÌâÄ¿£¬Í¬Ê±ÊÕ¼¯´ğ°¸
+//æ˜¾ç¤ºé¢˜ç›®ï¼ŒåŒæ—¶æ”¶é›†ç­”æ¡ˆ
 		for (int i = 0; i < num; i++)
 		{
 			cout << i+1<<".";
 			qarry[n[i]]->getq();
-			cout << "ÇëÊäÈëµÚ" << i+1 << "Ìâ´ğ°¸" << endl;
+			cout << "è¯·è¾“å…¥ç¬¬" << i+1 << "é¢˜ç­”æ¡ˆ" << endl;
 			cin >> answer[i];
 		}
 		system("pause");
-//×Ô¶¯ÅĞ¾í£º
+//è‡ªåŠ¨åˆ¤å·ï¼š
 		for (int i = 0; i < num; i++)
 		{
 			if (answer[i] == qarry[n[i]]->ans)
 			{
-				cout << "µÚ" << i+1 << "Ìâ" << "ÕıÈ·"<<endl;
+				cout << "ç¬¬" << i+1 << "é¢˜" << "æ­£ç¡®"<<endl;
 			}
 			else
-				cout << "µÚ" << i+1 << "Ìâ" << "´íÎó"<<endl;
+				cout << "ç¬¬" << i+1 << "é¢˜" << "é”™è¯¯"<<endl;
 		}
 		system("pause");
 	}
 }
 int qmanage::randnum(int i,int num)
-{//Éú³ÉÒ»´®²»ÖØ¸´µÄËæ»úÊı×é
+{//ç”Ÿæˆä¸€ä¸²ä¸é‡å¤çš„éšæœºæ•°ç»„
 	srand((unsigned)time(NULL));
 	int* a = new int[num];
 	for (int i=0;i<num;i++)
@@ -299,5 +299,5 @@ int qmanage::randnum(int i,int num)
 			}
 		}
 	}
-	return a[i];//·µ»ØËæ»úÊı×éÖĞµÄÒ»¸ö
+	return a[i];//è¿”å›éšæœºæ•°ç»„ä¸­çš„ä¸€ä¸ª
 }
