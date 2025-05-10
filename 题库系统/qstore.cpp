@@ -1,12 +1,12 @@
 #include<qstore.h>
-//¹¹Ôìº¯Êı
+//æ„é€ å‡½æ•°
 qstore::qstore(string qb,string op,string aw)
 {
 	qbody = qb;
 	opt = op;
 	ans= aw;
 }
-//´òÓ¡Ìâ¸ÉºÍ±¸Ñ¡Ïî
+//æ‰“å°é¢˜å¹²å’Œå¤‡é€‰é¡¹
 void qstore::getq() {
 
 	cout << qbody << endl;
